@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0e0a0a">
+<title>Vishnu & Gopika | Engagement Ceremony</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Cinzel:wght@400;500;600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===============================
+PALETTE
+=============================== */
+
+:root{
+
+--bg:#0e0a0a;
+--bg2:#140d0d;
+--surface:#1c1010;
+
+--red:#c0162a;
+--red2:#e02030;
+
+--silver:#c8d0d8;
+--silver2:#a0abb8;
+--silver3:#707888;
+
+--gold:#c8a050;
+--gold2:#e8c878;
+
+--text:#f0eeec;
+--text2:#c0bab4;
+
+--serif:'Cormorant Garamond', serif;
+--caps:'Cinzel', serif;
+--sans:'Jost', sans-serif;
+
+}
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:var(--serif);
+line-height:1.8;
+}
+
+/* SCROLL BAR */
+
+#bar{
+position:fixed;
+top:0;
+left:0;
+height:3px;
+width:0%;
+z-index:100;
+background:linear-gradient(90deg,var(--red),var(--silver),var(--red2));
+}
+
+/* SOUND PROMPT */
+
+#soundPrompt{
+
+position:fixed;
+inset:0;
+
+background:#0e0a0a;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+z-index:999;
+
+}
+
+.promptBox{
+text-align:center;
+}
+
+.promptBox .om{
+font-size:70px;
+color:var(--gold);
+margin-bottom:20px;
+}
+
+#startMusic{
+
+background:var(--red2);
+color:white;
+
+border:none;
+padding:14px 30px;
+
+border-radius:40px;
+
+font-size:16px;
+cursor:pointer;
+
+}
+
+/* HERO */
+
+#hero{
+
+min-height:100vh;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+text-align:center;
+
+padding:4rem;
+
+background:
+
+radial-gradient(
+ellipse 140% 55% at 50% -5%,
+rgba(192,22,42,0.25) 0%,
+transparent 60%
+),
+
+var(--bg);
+
+}
+
+.h-names{
+
+font-family:var(--caps);
+
+font-size:clamp(2.5rem,10vw,7rem);
+
+background:linear-gradient(160deg,#fff,var(--silver),#fff);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+.h-amp{
+color:var(--red2);
+font-style:italic;
+font-size:3rem;
+display:block;
+}
+
+.h-om{
+font-size:4rem;
+color:var(--gold);
+margin-bottom:1rem;
+}
+
+/* COUNTDOWN */
+
+.cdrow{
+display:flex;
+gap:1rem;
+margin-top:2rem;
+}
+
+.cdn{
+font-size:2rem;
+}
+
+/* SECTION */
+
+section{
+padding:6rem 2rem;
+text-align:center;
+}
+
+.page{
+max-width:680px;
+margin:auto;
+}
+
+.lbl{
+font-family:var(--sans);
+letter-spacing:.3em;
+text-transform:uppercase;
+color:var(--silver3);
+font-size:.7rem;
+}
+
+.sec-head{
+
+font-family:var(--caps);
+
+font-size:clamp(1.6rem,4vw,2.8rem);
+
+background:linear-gradient(135deg,#fff,var(--silver));
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+/* GRID */
+
+.dets{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:2rem;
+max-width:420px;
+margin:auto;
+}
+
+/* VENUE */
+
+.map-box{
+margin-top:2rem;
+height:280px;
+}
+
+.map-box iframe{
+width:100%;
+height:100%;
+border:0;
+}
+
+/* RSVP BUTTON */
+
+.btn-wa{
+
+display:inline-block;
+
+margin-top:2rem;
+
+background:#25d366;
+color:white;
+
+padding:12px 25px;
+
+border-radius:40px;
+
+text-decoration:none;
+
+}
+
+/* FOOTER */
+
+footer{
+padding:5rem 2rem;
+text-align:center;
+}
+
+.ft-names{
+font-family:var(--caps);
+font-size:clamp(2rem,8vw,4rem);
+}
+
+/* MUSIC BUTTON */
+
+#musicToggle{
+
+position:fixed;
+
+bottom:20px;
+right:20px;
+
+background:var(--surface);
+
+border:1px solid var(--silver3);
+
+width:55px;
+height:55px;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+cursor:pointer;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="bar"></div>
+
+<!-- SOUND PROMPT -->
+
+<div id="soundPrompt">
+
+<div class="promptBox">
+
+<div class="om">ॐ</div>
+
+<p>This invitation includes music.<br>Please turn up your volume.</p>
+
+<br>
+
+<button id="startMusic">Begin the Celebration</button>
+
+</div>
+
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO -->
+
+<section id="hero">
+
+<span class="h-om">ॐ</span>
+
+<h1 class="h-names">
+
+VISHNU
+<span class="h-amp">&</span>
+GOPIKA
+
+</h1>
+
+<p>Engagement Ceremony ✦ CSS Hall, Killipalam</p>
+
+<div class="cdrow">
+
+<div><span id="cd-d" class="cdn">00</span><br>Days</div>
+<div><span id="cd-h" class="cdn">00</span><br>Hours</div>
+<div><span id="cd-m" class="cdn">00</span><br>Mins</div>
+<div><span id="cd-s" class="cdn">00</span><br>Secs</div>
+
+</div>
+
+</section>
+
+<!-- BLESSINGS -->
+
+<section>
+
+<div class="page">
+
+<span class="lbl">Divine Blessings</span>
+
+<h2 class="sec-head">With Grace & Gratitude</h2>
+
+<p style="margin-top:20px;color:var(--text2);font-style:italic">
+
+With the divine blessings of our ancestors and the Almighty,
+two hearts have found their way to one another —
+and now we welcome you into this beautiful moment.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- OCCASION -->
+
+<section>
+
+<div class="page">
+
+<span class="lbl">The Occasion</span>
+
+<h2 class="sec-head">A Morning of Joy & Togetherness</h2>
+
+<div class="dets" style="margin-top:30px">
+
+<div>
+<strong>Date</strong><br>
+29 April 2026
+</div>
+
+<div>
+<strong>Time</strong><br>
+9:30 AM
+</div>
+
+<div>
+<strong>Bride</strong><br>
+Gopika Krishna S H
+</div>
+
+<div>
+<strong>Groom</strong><br>
+Sreenivasan A R (Vishnu)
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- VENUE -->
+
+<section>
+
+<div class="page">
+
+<span class="lbl">Where We Celebrate</span>
+
+<h2 class="sec-head">CSS Hall</h2>
+
+<p style="margin-top:15px">
+
+Killipalam, Thiruvananthapuram<br>
+Kerala, India
+
+</p>
+
+<div class="map-box">
+
+<iframe
+src="https://maps.google.com/maps?q=CSS+Hall+Killipalam+Thiruvananthapuram&output=embed">
+</iframe>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- RSVP -->
+
+<section>
+
+<div class="page">
+
+<span class="lbl">Your Presence</span>
+
+<h2 class="sec-head">Nothing Would Delight Us More</h2>
+
+<p style="margin-top:20px;color:var(--text2)">
+
+Your presence is the greatest gift you could bring.
+
+</p>
+
+<a href="https://wa.me/918907032769" class="btn-wa">
+Send Us a Message
+</a>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="ft-names">
+
+VISHNU & GOPIKA
+
+</div>
+
+<p>
+
+29 April 2026 ✦ CSS Hall, Killipalam
+
+</p>
+
+</footer>
+
+<div id="musicToggle">🔊</div>
+
+<script>
+
+/* SCROLL BAR */
+
+window.addEventListener('scroll',()=>{
+
+const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100
+
+document.getElementById('bar').style.width=pct+"%"
+
+})
+
+/* MUSIC */
+
+const music=document.getElementById("bgMusic")
+
+const btn=document.getElementById("startMusic")
+
+const prompt=document.getElementById("soundPrompt")
+
+const toggle=document.getElementById("musicToggle")
+
+let playing=false
+
+btn.onclick=()=>{
+
+music.play()
+
+prompt.style.display="none"
+
+playing=true
+
+}
+
+toggle.onclick=()=>{
+
+if(playing){
+
+music.pause()
+
+playing=false
+
+}else{
+
+music.play()
+
+playing=true
+
+}
+
+}
+
+/* COUNTDOWN */
+
+const TARGET=new Date('2026-04-29T09:30:00+05:30').getTime()
+
+function clock(){
+
+const diff=TARGET-Date.now()
+
+if(diff<=0)return
+
+const d=Math.floor(diff/86400000)
+
+const h=Math.floor((diff%86400000)/3600000)
+
+const m=Math.floor((diff%3600000)/60000)
+
+const s=Math.floor((diff%60000)/1000)
+
+document.getElementById("cd-d").textContent=d
+document.getElementById("cd-h").textContent=h
+document.getElementById("cd-m").textContent=m
+document.getElementById("cd-s").textContent=s
+
+}
+
+setInterval(clock,1000)
+
+clock()
+
+</script>
+
+</body>
+</html>
