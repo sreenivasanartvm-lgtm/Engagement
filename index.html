@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#0e0a0a"/>
+<title>Vishnu &amp; Gopika | Engagement Ceremony</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
+<style>
+
+/* ═══════════════════════════════════════════════
+PALETTE  —  Deep Crimson · Silver · Gold
+═══════════════════════════════════════════════ */
+:root {
+–bg:       #0e0a0a;
+–bg2:      #140d0d;
+–surface:  #1c1010;
+–red:      #c0162a;
+–red2:     #e02030;
+–red-pale: rgba(192,22,42,0.12);
+
+–silver:   #c8d0d8;
+–silver2:  #a0abb8;
+–silver3:  #707888;
+–silver-glow: rgba(200,208,216,0.18);
+
+–gold:     #c8a050;
+–gold2:    #e8c878;
+–gold3:    rgba(200,160,80,0.15);
+
+–text:     #f0eeec;
+–text2:    #c0bab4;
+–text3:    #807870;
+
+–serif:    ‘Cormorant Garamond’, Georgia, serif;
+–caps:     ‘Cinzel’, Georgia, serif;
+–sans:     ‘Jost’, system-ui, sans-serif;
+–ease:     cubic-bezier(0.16,1,0.3,1);
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html  { scroll-behavior:smooth; }
+body  {
+background:var(–bg);
+color:var(–text);
+font-family:var(–serif);
+line-height:1.8;
+overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+}
+a { text-decoration:none; color:inherit; }
+button { cursor:pointer; border:none; background:none; font-family:inherit; }
+
+/* ─── SCROLL PROGRESS ─── */
+#bar {
+position:fixed; top:0; left:0; height:2px; width:0%; z-index:200;
+background:linear-gradient(90deg, var(–red), var(–silver), var(–red2));
+box-shadow:0 0 8px rgba(224,32,48,0.7);
+transition:width .1s linear;
+}
+
+/* ─── VOLUME PROMPT ─── */
+#vol-prompt {
+position:fixed; inset:0; z-index:999;
+background:rgba(10,6,6,0.96);
+display:flex; flex-direction:column;
+align-items:center; justify-content:center;
+gap:1.6rem;
+text-align:center;
+padding:2rem;
+backdrop-filter:blur(4px);
+}
+#vol-prompt .vp-om {
+font-size:4rem; color:var(–gold);
+text-shadow:0 0 40px rgba(200,160,80,0.6);
+animation:om-breathe 2.4s ease-in-out infinite;
+}
+@keyframes om-breathe {
+0%,100% { transform:scale(0.95); opacity:0.7; }
+50%      { transform:scale(1.05); opacity:1; }
+}
+#vol-prompt .vp-title {
+font-family:var(–caps); font-size:clamp(1.3rem,4vw,1.9rem);
+color:var(–silver); letter-spacing:0.12em;
+}
+#vol-prompt .vp-msg {
+font-family:var(–sans); font-weight:300;
+font-size:clamp(0.8rem,2.2vw,0.95rem);
+letter-spacing:0.08em; color:var(–text2); line-height:1.8;
+max-width:380px;
+}
+#vol-prompt .vp-icon {
+font-size:2.8rem;
+animation:speaker-pulse 1.5s ease-in-out infinite;
+}
+@keyframes speaker-pulse {
+0%,100%{transform:scale(1);opacity:1}
+50%{transform:scale(1.12);opacity:0.75}
+}
+#vol-prompt .vp-btn {
+font-family:var(–caps); font-size:0.75rem;
+letter-spacing:0.22em; text-transform:uppercase;
+color:var(–bg);
+background:linear-gradient(135deg, var(–red), var(–red2));
+padding:0.85rem 2.4rem; border-radius:50px;
+box-shadow:0 4px 24px rgba(224,32,48,0.45);
+transition:transform .2s, box-shadow .2s;
+-webkit-tap-highlight-color:transparent;
+}
+#vol-prompt .vp-btn:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(224,32,48,0.55); }
+#vol-prompt .vp-gem { color:var(–gold2); font-size:0.55rem; letter-spacing:0.8em; }
+
+/* ─── MUSIC EQUALIZER BUTTON ─── */
+#eq-btn {
+position:fixed; bottom:1.5rem; right:1.5rem; z-index:100;
+width:56px; height:56px; border-radius:50%;
+background:var(–surface);
+border:1.5px solid rgba(200,208,216,0.25);
+display:flex; align-items:center; justify-content:center;
+box-shadow:0 4px 24px rgba(0,0,0,0.5);
+cursor:pointer; -webkit-tap-highlight-color:transparent;
+transition:border-color .3s, box-shadow .3s;
+}
+#eq-btn.on {
+border-color:var(–red2);
+box-shadow:0 4px 24px rgba(0,0,0,0.5), 0 0 0 4px rgba(224,32,48,0.20);
+}
+/* equalizer bars */
+.eq-bars {
+display:flex; align-items:flex-end; gap:3px; height:20px;
+}
+.eq-bars span {
+display:block; width:3.5px; border-radius:2px;
+background:var(–silver);
+height:6px; transition:background .3s;
+}
+#eq-btn.on .eq-bars span { background:var(–red2); }
+#eq-btn.on .eq-bars span:nth-child(1) { animation:eq1 0.7s ease-in-out infinite; }
+#eq-btn.on .eq-bars span:nth-child(2) { animation:eq2 0.7s 0.12s ease-in-out infinite; }
+#eq-btn.on .eq-bars span:nth-child(3) { animation:eq3 0.7s 0.24s ease-in-out infinite; }
+#eq-btn.on .eq-bars span:nth-child(4) { animation:eq4 0.7s 0.08s ease-in-out infinite; }
+#eq-btn.on .eq-bars span:nth-child(5) { animation:eq5 0.7s 0.18s ease-in-out infinite; }
+@keyframes eq1 { 0%,100%{height:5px}  50%{height:18px} }
+@keyframes eq2 { 0%,100%{height:10px} 50%{height:7px}  }
+@keyframes eq3 { 0%,100%{height:16px} 50%{height:4px}  }
+@keyframes eq4 { 0%,100%{height:7px}  50%{height:15px} }
+@keyframes eq5 { 0%,100%{height:12px} 50%{height:6px}  }
+/* pause icon when playing */
+.eq-pause { display:none; gap:4px; align-items:center; }
+.eq-pause span { display:block; width:4px; height:16px; background:var(–red2); border-radius:2px; }
+
+/* ─── PAGE COLUMN ─── */
+.page {
+max-width:680px; margin:0 auto;
+padding:0 clamp(1.5rem,6vw,3rem);
+}
+
+/* ─── GEM / ORNAMENT ─── */
+.gem {
+display:block; text-align:center;
+font-size:0.55rem; letter-spacing:0.85em;
+color:var(–gold2);
+margin:2rem 0;
+text-shadow:0 0 10px rgba(232,200,120,0.55);
+}
+.gem-red {
+color:var(–red2);
+text-shadow:0 0 10px rgba(224,32,48,0.55);
+}
+
+/* ─── LABEL ─── */
+.lbl {
+display:block; text-align:center;
+font-family:var(–sans); font-weight:300;
+font-size:0.65rem; letter-spacing:0.38em; text-transform:uppercase;
+color:var(–silver3); margin-bottom:0.75rem;
+}
+
+/* ─── REVEAL ─── */
+.reveal {
+opacity:0; transform:translateY(22px);
+transition:opacity .9s var(–ease), transform .9s var(–ease);
+}
+.reveal.in { opacity:1; transform:none; }
+
+/* ═══════════════════════════════════════════════
+HERO
+═══════════════════════════════════════════════ */
+#hero {
+min-height:100svh;
+display:flex; flex-direction:column;
+align-items:center; justify-content:center;
+text-align:center;
+position:relative;
+padding:4rem clamp(1.5rem,6vw,3rem) 6rem;
+overflow:hidden;
+background:
+radial-gradient(ellipse 140% 55% at 50% -5%,
+rgba(192,22,42,0.22) 0%, transparent 60%),
+radial-gradient(ellipse 80% 40% at 50% 105%,
+rgba(192,22,42,0.12) 0%, transparent 60%),
+var(–bg);
+}
+
+/* decorative full-page inset border */
+.hero-border {
+position:absolute;
+inset:clamp(14px,3vw,28px);
+border:1px solid rgba(200,208,216,0.12);
+pointer-events:none;
+}
+/* corner accents */
+.hero-border::before,.hero-border::after {
+content:’’; position:absolute;
+width:clamp(22px,4vw,34px); height:clamp(22px,4vw,34px);
+border-color:var(–red); border-style:solid;
+}
+.hero-border::before { top:0; left:0; border-width:2px 0 0 2px; }
+.hero-border::after  { bottom:0; right:0; border-width:0 2px 2px 0; }
+.hero-border-b { position:absolute; inset:clamp(14px,3vw,28px); pointer-events:none; }
+.hero-border-b::before,.hero-border-b::after {
+content:’’; position:absolute;
+width:clamp(22px,4vw,34px); height:clamp(22px,4vw,34px);
+border-color:var(–red); border-style:solid;
+}
+.hero-border-b::before { top:0; right:0; border-width:2px 2px 0 0; }
+.hero-border-b::after  { bottom:0; left:0; border-width:0 0 2px 2px; }
+
+.hero-inner { position:relative; z-index:1; }
+
+.h-intro {
+font-family:var(–sans); font-weight:300;
+font-size:clamp(0.6rem,1.8vw,0.72rem);
+letter-spacing:0.34em; text-transform:uppercase;
+color:var(–silver3); margin-bottom:2.5rem;
+opacity:0; animation:fadeup .9s var(–ease) .1s forwards;
+}
+
+/* sacred confluence badge */
+.h-confluence {
+margin:0 auto 2rem;
+display:inline-flex; align-items:center; gap:0.6rem;
+font-family:var(–sans); font-weight:200;
+font-size:0.62rem; letter-spacing:0.3em; text-transform:uppercase;
+color:var(–silver3);
+opacity:0; animation:fadeup .9s var(–ease) .25s forwards;
+}
+.h-confluence-line {
+width:30px; height:1px;
+background:linear-gradient(90deg, transparent, var(–red2));
+}
+.h-confluence-line.r { background:linear-gradient(90deg, var(–red2), transparent); }
+.h-confluence .dot { color:var(–red2); font-size:0.6rem; }
+
+/* OM */
+.h-om {
+font-size:clamp(3rem,8vw,5rem); color:var(–gold);
+display:block; line-height:1; margin-bottom:0.5rem;
+text-shadow:0 0 40px rgba(200,160,80,0.55), 0 0 80px rgba(200,160,80,0.25);
+opacity:0; animation:fadeup .9s var(–ease) .4s forwards;
+}
+
+.h-names {
+font-family:var(–caps); font-weight:600;
+font-size:clamp(2.8rem,11vw,7.5rem);
+line-height:1.0; letter-spacing:0.06em;
+/* silver-to-white gradient text */
+background:linear-gradient(160deg, #ffffff 0%, #c8d0d8 40%, #ffffff 70%, #a0abb8 100%);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent;
+background-clip:text;
+opacity:0; animation:fadeup .9s var(–ease) .55s forwards;
+}
+.h-amp {
+display:block; font-family:var(–serif); font-style:italic; font-weight:300;
+font-size:clamp(2rem,6vw,4rem);
+-webkit-text-fill-color:var(–red2);
+color:var(–red2);
+line-height:1.4;
+text-shadow:0 0 30px rgba(224,32,48,0.45);
+}
+
+.h-tagline {
+font-family:var(–sans); font-weight:300;
+font-size:clamp(0.62rem,1.8vw,0.76rem);
+letter-spacing:0.28em; text-transform:uppercase;
+color:var(–silver3); margin-top:1.8rem;
+opacity:0; animation:fadeup .9s var(–ease) .7s forwards;
+}
+
+/* COUNTDOWN */
+.cdrow {
+display:flex; align-items:center; justify-content:center;
+gap:clamp(0.5rem,3vw,1.5rem);
+margin-top:3rem;
+opacity:0; animation:fadeup .9s var(–ease) .88s forwards;
+}
+.cdu { display:flex; flex-direction:column; align-items:center; }
+.cdn {
+font-family:var(–serif); font-weight:300;
+font-size:clamp(2.4rem,8vw,4.5rem);
+color:var(–text); line-height:1;
+will-change:transform;
+}
+.cdn.fl { animation:cdfl .32s ease; }
+@keyframes cdfl {
+0%{opacity:1;transform:translateY(0)}
+40%{opacity:0;transform:translateY(-6px)}
+60%{opacity:0;transform:translateY(6px)}
+100%{opacity:1;transform:translateY(0)}
+}
+.cd-sep {
+font-family:var(–serif); font-size:clamp(1.5rem,4vw,2.5rem);
+color:var(–red); opacity:0.7;
+align-self:flex-start; margin-top:0.3rem; flex-shrink:0;
+}
+.cdl {
+font-family:var(–sans); font-weight:300;
+font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase;
+color:var(–silver3); margin-top:0.3rem;
+}
+
+/* scroll cue */
+.scue {
+position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+display:flex; flex-direction:column; align-items:center; gap:0.6rem;
+font-family:var(–sans); font-weight:300;
+font-size:0.58rem; letter-spacing:0.3em; text-transform:uppercase;
+color:var(–silver3); text-decoration:none; z-index:1;
+opacity:0; animation:fadeup .9s var(–ease) 1.05s forwards;
+}
+.scue-line {
+display:block; width:1px; height:36px;
+background:linear-gradient(to bottom, var(–red2), transparent);
+animation:linedrip 1.8s ease-in-out infinite;
+}
+@keyframes linedrip { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(0.4);opacity:.35} }
+
+/* ═══════════════════════════════════════════════
+SECTION SEPARATOR
+═══════════════════════════════════════════════ */
+.sep {
+width:1px; height:60px; margin:0 auto;
+background:linear-gradient(to bottom, transparent, var(–red), transparent);
+display:block;
+}
+
+/* ═══════════════════════════════════════════════
+BLESSINGS
+═══════════════════════════════════════════════ */
+#blessings {
+padding:clamp(4.5rem,12vw,8rem) 0;
+text-align:center;
+background:linear-gradient(180deg, var(–bg) 0%, var(–bg2) 50%, var(–bg) 100%);
+}
+
+.bl-om {
+font-size:clamp(3rem,8vw,4.5rem); color:var(–gold);
+display:block; margin:1.2rem 0;
+text-shadow:0 0 36px rgba(200,160,80,0.55), 0 0 70px rgba(200,160,80,0.25);
+}
+
+.bl-head {
+font-family:var(–caps); font-weight:500;
+font-size:clamp(1.5rem,4.5vw,2.6rem);
+background:linear-gradient(135deg, #ffffff 0%, var(–silver) 50%, #ffffff 100%);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent;
+background-clip:text;
+margin-bottom:0.5rem;
+}
+
+.bl-text {
+font-family:var(–serif); font-style:italic; font-weight:300;
+font-size:clamp(1.05rem,2.5vw,1.28rem);
+color:var(–text2); line-height:2;
+max-width:520px; margin:0 auto 1.5rem;
+}
+
+.bl-families {
+margin:1.5rem 0;
+}
+.bl-family-name {
+font-family:var(–caps); font-weight:500;
+font-size:clamp(0.9rem,2.2vw,1.1rem);
+color:var(–silver); letter-spacing:0.08em;
+line-height:2;
+}
+.bl-along {
+font-family:var(–sans); font-weight:300;
+font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase;
+color:var(–silver3); margin:0.5rem 0; display:block;
+}
+
+.bl-invite {
+font-family:var(–sans); font-weight:300;
+font-size:0.68rem; letter-spacing:0.32em; text-transform:uppercase;
+color:var(–silver3); margin:1.8rem 0 1rem; display:block;
+}
+.bl-couple {
+font-family:var(–serif); font-weight:400;
+font-size:clamp(1.5rem,4vw,2.3rem);
+color:var(–text); line-height:1.6;
+}
+.bl-couple-amp {
+font-style:italic; color:var(–red2); display:block;
+font-size:0.68em; margin:0.1rem 0;
+text-shadow:0 0 20px rgba(224,32,48,0.40);
+}
+
+/* ═══════════════════════════════════════════════
+OCCASION
+═══════════════════════════════════════════════ */
+#occasion {
+padding:clamp(4.5rem,12vw,8rem) 0;
+text-align:center;
+position:relative;
+}
+#occasion::before {
+content:’’; position:absolute; inset:0;
+background:linear-gradient(180deg,
+rgba(192,22,42,0.04) 0%,
+rgba(192,22,42,0.08) 50%,
+rgba(192,22,42,0.04) 100%);
+pointer-events:none;
+}
+
+.sec-head {
+font-family:var(–caps); font-weight:500;
+font-size:clamp(1.6rem,4.5vw,2.8rem);
+background:linear-gradient(135deg, #ffffff 0%, var(–silver) 50%, #ffffff 100%);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent;
+background-clip:text;
+line-height:1.2; margin-bottom:0.5rem;
+}
+.sec-head em {
+font-style:italic; font-family:var(–serif); font-weight:400;
+background:linear-gradient(135deg, var(–red2) 0%, #ff4060 100%);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent;
+background-clip:text;
+}
+
+.occ-note {
+font-family:var(–serif); font-style:italic; font-weight:300;
+font-size:clamp(.98rem,2.3vw,1.15rem);
+color:var(–text2); margin:1rem 0 2.8rem; line-height:1.85;
+}
+
+/* details */
+.dets {
+display:grid; grid-template-columns:1fr 1fr;
+gap:2.2rem 3rem; max-width:420px; margin:0 auto; text-align:left;
+}
+.det-l {
+font-family:var(–sans); font-weight:300;
+font-size:0.58rem; letter-spacing:0.3em; text-transform:uppercase;
+color:var(–silver3); display:block; margin-bottom:0.3rem;
+}
+.det-v {
+font-family:var(–serif); font-weight:400;
+font-size:clamp(.97rem,2.3vw,1.1rem); color:var(–text); line-height:1.4;
+}
+.det-v span { display:block; font-size:.88em; color:var(–text2); font-weight:300; }
+
+/* ═══════════════════════════════════════════════
+VENUE
+═══════════════════════════════════════════════ */
+#venue {
+padding:clamp(4.5rem,12vw,8rem) 0;
+text-align:center;
+background:linear-gradient(180deg, var(–bg) 0%, var(–bg2) 50%, var(–bg) 100%);
+}
+
+.venue-please {
+font-family:var(–sans); font-weight:300;
+font-size:0.68rem; letter-spacing:0.32em; text-transform:uppercase;
+color:var(–silver3); margin-bottom:0.7rem; display:block;
+}
+.venue-name {
+font-family:var(–caps); font-weight:500;
+font-size:clamp(2rem,7vw,4rem);
+background:linear-gradient(135deg, #ffffff 0%, var(–silver) 50%, #ffffff 100%);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent;
+background-clip:text;
+line-height:1.1; margin-bottom:0.6rem;
+}
+.venue-addr {
+font-family:var(–serif); font-style:italic; font-weight:300;
+font-size:clamp(.97rem,2.3vw,1.2rem);
+color:var(–text2); line-height:1.85; margin-bottom:2rem;
+}
+.map-lnk {
+display:inline-flex; align-items:center; gap:0.5rem;
+font-family:var(–sans); font-weight:300;
+font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase;
+color:var(–red2);
+border-bottom:1px solid rgba(224,32,48,0.35);
+padding-bottom:0.2rem;
+transition:opacity .2s;
+}
+.map-lnk:hover { opacity:0.6; }
+
+.map-box {
+margin-top:2rem; border-radius:12px; overflow:hidden;
+border:1px solid rgba(200,208,216,0.12);
+box-shadow:0 8px 40px rgba(0,0,0,0.5);
+height:280px;
+}
+.map-box iframe { width:100%; height:100%; display:block; border:0;
+filter:invert(0.85) hue-rotate(180deg) saturate(0.7) brightness(0.9);
+}
+
+/* ═══════════════════════════════════════════════
+PRESENCE / RSVP
+═══════════════════════════════════════════════ */
+#presence {
+padding:clamp(4.5rem,12vw,8rem) 0;
+text-align:center;
+}
+
+.pres-text {
+font-family:var(–serif); font-style:italic; font-weight:300;
+font-size:clamp(1rem,2.4vw,1.2rem);
+color:var(–text2); line-height:2; margin:1.5rem 0 2.5rem;
+}
+.pres-text strong { font-style:normal; font-weight:400; color:var(–text); }
+
+.btn-wa {
+display:inline-flex; align-items:center; gap:.65rem;
+font-family:var(–sans); font-weight:300;
+font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+background:#25d366; color:#fff;
+padding:.9rem 2.2rem; border-radius:50px;
+box-shadow:0 4px 22px rgba(37,211,102,0.35);
+transition:transform .2s, box-shadow .2s;
+-webkit-tap-highlight-color:transparent;
+}
+.btn-wa:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(37,211,102,.45); }
+.btn-wa:active { transform:scale(.97); }
+
+/* ═══════════════════════════════════════════════
+FOOTER
+═══════════════════════════════════════════════ */
+footer {
+padding:clamp(3.5rem,9vw,6rem) 0 clamp(2.5rem,6vw,4rem);
+text-align:center;
+background:linear-gradient(180deg, var(–bg) 0%, var(–bg2) 100%);
+position:relative;
+}
+footer::before {
+content:’’; display:block;
+width:45%; height:1px; margin:0 auto 3.5rem;
+background:linear-gradient(90deg, transparent, var(–red), transparent);
+box-shadow:0 0 10px rgba(224,32,48,0.45);
+}
+
+.ft-names {
+font-family:var(–caps); font-weight:600;
+font-size:clamp(2rem,8vw,4.2rem);
+background:linear-gradient(160deg, #ffffff 0%, var(–silver) 40%, #ffffff 70%, var(–silver2) 100%);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent;
+background-clip:text;
+line-height:1.1; margin-bottom:.8rem;
+}
+.ft-amp {
+font-family:var(–serif); font-style:italic; font-weight:300;
+-webkit-text-fill-color:var(–red2); color:var(–red2);
+}
+.ft-meta {
+font-family:var(–sans); font-weight:300;
+font-size:.67rem; letter-spacing:.28em; text-transform:uppercase;
+color:var(–silver3); margin-bottom:2rem;
+}
+.ft-note {
+font-family:var(–serif); font-style:italic; font-weight:300;
+font-size:clamp(.97rem,2.3vw,1.1rem);
+color:var(–text2); line-height:2;
+max-width:460px; margin:0 auto;
+}
+.ft-bottom {
+margin-top:3rem;
+font-family:var(–sans); font-weight:200;
+font-size:0.6rem; letter-spacing:0.2em;
+color:var(–text3);
+}
+
+/* ─── KEYFRAMES ─── */
+@keyframes fadeup {
+from { opacity:0; transform:translateY(18px); }
+to   { opacity:1; transform:none; }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:520px) {
+.dets { grid-template-columns:1fr; gap:1.5rem; text-align:center; }
+.h-names { font-size:clamp(2.6rem,14vw,5rem); }
+.cdrow   { gap:0.6rem; }
+.cdn     { font-size:clamp(2rem,10vw,3.2rem); }
+.cd-sep  { font-size:1.4rem; }
+.map-box { height:220px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+
+<div id="bar"></div>
+
+<!-- VOLUME PROMPT -->
+
+<div id="vol-prompt">
+  <span class="vp-gem">✦ ✦ ✦</span>
+  <div class="vp-om">&#x0950;</div>
+  <div class="vp-title">Vishnu &amp; Gopika</div>
+  <p class="vp-msg">
+    This invitation comes with music.<br/>
+    Please turn up your volume for the full experience.
+  </p>
+  <div class="vp-icon">🔊</div>
+  <button class="vp-btn" id="start-btn">Begin the Celebration</button>
+  <span class="vp-gem">✦ ✦ ✦</span>
+</div>
+
+<!-- MUSIC EQUALIZER BUTTON -->
+
+<div id="eq-btn" aria-label="Toggle music" role="button" tabindex="0">
+  <div class="eq-bars">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</div>
+<audio id="aud" loop><source src="music.mp3" type="audio/mpeg"/></audio>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+
+<section id="hero">
+  <div class="hero-border"></div>
+  <div class="hero-border-b"></div>
+
+  <div class="hero-inner">
+    <p class="h-intro">You are cordially invited to celebrate</p>
+
+```
+<div class="h-confluence">
+  <span class="h-confluence-line"></span>
+  <span>An Auspicious Occasion</span>
+  <span class="dot">&#x0950;</span>
+  <span>29 April 2026</span>
+  <span class="h-confluence-line r"></span>
+</div>
+
+<span class="h-om">&#x0950;</span>
+
+<h1 class="h-names">
+  VISHNU
+  <span class="h-amp">&amp;</span>
+  GOPIKA
+</h1>
+
+<p class="h-tagline">Engagement Ceremony &nbsp;✦&nbsp; CSS Hall, Killipalam</p>
+
+<div class="cdrow">
+  <div class="cdu"><span class="cdn" id="cd-d">00</span><span class="cdl">Days</span></div>
+  <span class="cd-sep">:</span>
+  <div class="cdu"><span class="cdn" id="cd-h">00</span><span class="cdl">Hours</span></div>
+  <span class="cd-sep">:</span>
+  <div class="cdu"><span class="cdn" id="cd-m">00</span><span class="cdl">Mins</span></div>
+  <span class="cd-sep">:</span>
+  <div class="cdu"><span class="cdn" id="cd-s">00</span><span class="cdl">Secs</span></div>
+</div>
+```
+
+  </div>
+
+  <a href="#blessings" class="scue">
+    <span class="scue-line"></span>
+    Scroll
+  </a>
+</section>
+
+<!-- ═══════════════ BLESSINGS ═══════════════ -->
+
+<section id="blessings">
+  <div class="page">
+
+```
+<div class="reveal">
+  <span class="lbl">✦ Divine Blessings ✦</span>
+  <h2 class="bl-head">With Grace &amp; Gratitude</h2>
+</div>
+
+<span class="gem reveal">✦</span>
+<span class="bl-om reveal">&#x0950;</span>
+<span class="gem reveal">✦</span>
+
+<p class="bl-text reveal">
+  With the divine blessings of our ancestors and the Almighty,
+  and with the grace of those who came before us,
+  two hearts have found their way to one another —
+  and now, with overflowing joy, we welcome you into this beautiful moment.
+</p>
+
+<div class="bl-families reveal">
+  <span class="bl-along">Families of</span>
+  <div class="bl-family-name">
+    Sreenivasan A R (Vishnu)
+  </div>
+  <span class="bl-along">and</span>
+  <div class="bl-family-name">
+    Gopika Krishna S H
+  </div>
+</div>
+
+<span class="gem reveal">✦</span>
+
+<div class="reveal">
+  <span class="bl-invite">lovingly invite you to celebrate the engagement of</span>
+  <div class="bl-couple">
+    Sreenivasan A R (Vishnu)
+    <span class="bl-couple-amp">&amp;</span>
+    Gopika Krishna S H
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ═══════════════ OCCASION ═══════════════ -->
+
+<section id="occasion">
+  <div class="page">
+
+```
+<div class="reveal">
+  <span class="lbl">The Occasion</span>
+  <span class="gem gem-red">✦</span>
+  <h2 class="sec-head">A Morning of <em>Joy</em> &amp; Togetherness</h2>
+</div>
+
+<p class="occ-note reveal">
+  We would be truly honoured to have you with us as we begin this cherished chapter.<br/>
+  Please hold this date close to your heart.
+</p>
+
+<div class="dets reveal">
+  <div>
+    <span class="det-l">Date</span>
+    <span class="det-v">Wednesday<span>29 April 2026</span></span>
+  </div>
+  <div>
+    <span class="det-l">Time</span>
+    <span class="det-v">9:30 AM<span>until 10:30 AM</span></span>
+  </div>
+  <div>
+    <span class="det-l">Bride</span>
+    <span class="det-v">Gopika Krishna S H</span>
+  </div>
+  <div>
+    <span class="det-l">Groom</span>
+    <span class="det-v">Sreenivasan A R<span>Vishnu</span></span>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ═══════════════ VENUE ═══════════════ -->
+
+<section id="venue">
+  <div class="page">
+
+```
+<div class="reveal">
+  <span class="lbl">Where We Celebrate</span>
+  <span class="gem">✦</span>
+  <span class="venue-please">Please join us at</span>
+  <h2 class="venue-name">CSS Hall</h2>
+  <p class="venue-addr">
+    Killipalam, Thiruvananthapuram<br/>Kerala, India
+  </p>
+  <a href="https://maps.app.goo.gl/AwdVwEpPjYL7wEru9"
+     target="_blank" rel="noopener noreferrer" class="map-lnk">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+    View on Maps
+  </a>
+</div>
+
+<div class="map-box reveal">
+  <iframe
+    src="https://maps.google.com/maps?q=CSS+Hall+Killipalam+Thiruvananthapuram&output=embed&z=16"
+    allowfullscreen="" loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="CSS Hall, Killipalam">
+  </iframe>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ═══════════════ PRESENCE ═══════════════ -->
+
+<section id="presence">
+  <div class="page">
+
+```
+<div class="reveal">
+  <span class="lbl">Your Presence</span>
+  <span class="gem gem-red">✦</span>
+  <h2 class="sec-head">Nothing Would <em>Delight</em> Us More</h2>
+</div>
+
+<p class="pres-text reveal">
+  Your presence is the greatest gift you could bring.<br/>
+  Do let us know you will be joining us —<br/>
+  <strong>we are counting the days.</strong>
+</p>
+
+<div class="reveal">
+  <a href="https://wa.me/918907032769"
+     target="_blank" rel="noopener noreferrer" class="btn-wa">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+    Send Us a Message
+  </a>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+
+<footer>
+  <div class="page">
+    <span class="gem">✦</span>
+    <div class="ft-names">
+      VISHNU <span class="ft-amp">&amp;</span> GOPIKA
+    </div>
+    <p class="ft-meta">29 April 2026 &nbsp;✦&nbsp; CSS Hall, Killipalam, Kerala</p>
+    <p class="ft-note">
+      May this day be as bright as the love that brought us together,<br/>
+      and as warm as the company of those we hold dear.
+    </p>
+    <div class="ft-bottom">Made with ♥ for our special day</div>
+  </div>
+</footer>
+
+<!-- CONFETTI -->
+
+<div id="conf" style="position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden;"></div>
+
+<script>
+/* ── SCROLL PROGRESS ── */
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('bar').style.width = Math.min(pct,100) + '%';
+}, {passive:true});
+
+/* ── SCROLL REVEAL ── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+}, {threshold:0.1, rootMargin:'0px 0px -24px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+/* ── COUNTDOWN  IST = UTC+5:30 ── */
+const TARGET = new Date('2026-04-29T09:30:00+05:30').getTime();
+const CE = { d:document.getElementById('cd-d'), h:document.getElementById('cd-h'), m:document.getElementById('cd-m'), s:document.getElementById('cd-s') };
+let pv = {d:-1,h:-1,m:-1,s:-1};
+const pad = n => String(n).padStart(2,'0');
+function flip(el,v,old) { el.textContent=pad(v); if(v!==old){el.classList.remove('fl');void el.offsetWidth;el.classList.add('fl');} }
+function clock() {
+  const diff = TARGET - Date.now();
+  if (diff <= 0) { Object.values(CE).forEach(e=>e.textContent='00'); boom(); return; }
+  const d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
+        m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+  flip(CE.d,d,pv.d); flip(CE.h,h,pv.h); flip(CE.m,m,pv.m); flip(CE.s,s,pv.s);
+  pv={d,h,m,s};
+}
+setInterval(clock,1000); clock();
+
+/* ── CONFETTI ── */
+function boom() {
+  const wrap = document.getElementById('conf');
+  const cols = ['#e02030','#c0162a','#c8d0d8','#a0abb8','#c8a050','#e8c878','#ffffff'];
+  for (let i=0;i<90;i++) {
+    const p = document.createElement('div');
+    const s = Math.random()*7+4;
+    p.style.cssText =
+      `position:absolute;top:-14px;left:${Math.random()*100}%;`+
+      `width:${s}px;height:${s}px;`+
+      `background:${cols[~~(Math.random()*cols.length)]};`+
+      `animation:cfall ${Math.random()*2.5+1.8}s linear ${Math.random()*1.5}s forwards;`+
+      `transform:rotate(${Math.random()*360}deg);`+
+      `border-radius:${Math.random()>.5?'50%':'2px'};`;
+    wrap.appendChild(p);
+    p.addEventListener('animationend', () => p.remove());
+  }
+}
+const cs = document.createElement('style');
+cs.textContent = '@keyframes cfall{to{transform:translateY(110vh) rotate(700deg);opacity:0}}';
+document.head.appendChild(cs);
+
+/* ══════════════════════════════════════
+   MUSIC + EQUALIZER + VOLUME PROMPT
+══════════════════════════════════════ */
+const aud   = document.getElementById('aud');
+const eqBtn = document.getElementById('eq-btn');
+const vp    = document.getElementById('vol-prompt');
+const startBtn = document.getElementById('start-btn');
+let playing = false;
+let autoTriggered = false;
+
+/* Set initial volume to max so users hear it loud */
+aud.volume = 1.0;
+
+/* Equalizer state */
+function setEq(on) {
+  if (on) {
+    eqBtn.classList.add('on');
+  } else {
+    eqBtn.classList.remove('on');
+  }
+}
+
+/* Play/pause logic */
+function playMusic() {
+  if (playing) return;
+  aud.volume = 1.0;
+  aud.play().then(() => {
+    playing = true;
+    setEq(true);
+  }).catch(() => {});
+}
+function pauseMusic() {
+  aud.pause();
+  playing = false;
+  setEq(false);
+}
+
+/* Volume prompt — START button */
+startBtn.addEventListener('click', () => {
+  /* Dismiss prompt */
+  vp.style.transition = 'opacity 0.6s ease';
+  vp.style.opacity = '0';
+  setTimeout(() => { vp.style.display = 'none'; }, 600);
+
+  /* Play immediately on user gesture */
+  aud.volume = 1.0;
+  aud.play().then(() => {
+    playing = true;
+    autoTriggered = true;
+    setEq(true);
+  }).catch(() => {
+    autoTriggered = true;
+  });
+});
+
+/* Auto-start on first scroll if user skipped the prompt
+   (handles case where user scrolls before clicking start) */
+window.addEventListener('scroll', () => {
+  if (!autoTriggered) {
+    autoTriggered = true;
+    playMusic();
+  }
+}, {once:true, passive:true});
+
+window.addEventListener('touchstart', () => {
+  if (!autoTriggered) {
+    autoTriggered = true;
+    playMusic();
+  }
+}, {once:true, passive:true});
+
+/* Equalizer button — manual toggle */
+eqBtn.addEventListener('click', () => {
+  if (playing) {
+    pauseMusic();
+  } else {
+    playMusic();
+  }
+});
+eqBtn.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    eqBtn.click();
+  }
+});
+
+/* Pause canvas when hidden, resume on show */
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && playing) {
+    aud.pause();
+  } else if (!document.hidden && playing) {
+    aud.play().catch(() => {});
+  }
+});
+</script>
+
+</body>
+</html>
